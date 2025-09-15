@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Masaki</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #fefefe;
+      color: #333;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      margin: 0;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      animation: fadeInUp 1.2s ease;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      animation: fadeInUp 1.5s ease;
+    }
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Sections General ===== */
+    section {
+      padding: 80px 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== About Section ===== */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+    }
+    .about img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .about-text {
+      max-width: 500px;
+    }
+
+    /* ===== Skills Section ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+    .skill {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .skill:hover {
+      transform: translateY(-5px);
+    }
+
+    /* ===== Portfolio Section ===== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .portfolio-item:hover img {
+      transform: scale(1.1);
+    }
+    .portfolio-item .title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .portfolio-item:hover .title {
+      opacity: 1;
+    }
+
+    /* ===== Timeline Section ===== */
+    .timeline {
+      position: relative;
+      margin: 40px auto;
+      padding-left: 20px;
+      border-left: 3px solid #ccc;
+      max-width: 600px;
+    }
+    .timeline-item {
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border: 3px solid #76c7c0;
+      border-radius: 50%;
+    }
+    .timeline-item h3 {
+      margin-bottom: 5px;
+    }
+
+    /* ===== Contact Section ===== */
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
+    }
+    .contact input, .contact textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .contact button {
+      padding: 12px;
+      background: #76c7c0;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+    .contact button:hover {
+      background: #5bb1aa;
+      transform: scale(0.95);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #eee;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Hello, I’m Masaki.</h1>
+    <p>Web Designer / Frontend Developer</p>
+    <div class="scroll-down">↓</div>
+  </section>
+
+  <!-- About -->
+  <section class="about fade-in">
+    <img src="profile.jpg" alt="Profile Photo">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>
+        東京を拠点に活動するWebデザイナーです。<br>
+        明るく楽しいデザインを心がけ、<br>
+        コードとデザインの両面でサポートします。
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="fade-in">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">React</div>
+        <div class="skill">Figma</div>
+        <div class="skill">WordPress</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="fade-in">
+    <div class="container">
+      <h2>Portfolio</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="work1.jpg" alt="Work 1">
+          <div class="title">Work 1</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="work2.jpg" alt="Work 2">
+          <div class="title">Work 2</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="work3.jpg" alt="Work 3">
+          <div class="title">Work 3</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="fade-in">
+    <div class="container">
+      <h2>Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>2020</h3>
+          <p>Web制作を開始</p>
+        </div>
+        <div class="timeline-item">
+          <h3>2023</h3>
+          <p>フリーランスとして活動開始</p>
+        </div>
+        <div class="timeline-item">
+          <h3>2025</h3>
+          <p>現在、Webデザイナーとして転職活動中</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact fade-in">
+    <div class="container">
+      <h2>Contact</h2>
+      <form>
+        <input type="text" placeholder="お名前" required>
+        <input type="email" placeholder="メールアドレス" required>
+        <textarea rows="5" placeholder="メッセージ"></textarea>
+        <button type="submit">送信</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Masaki Portfolio
+  </footer>
+
+  <script>
+    // スクロールで要素をふわっと表示
+    const elements = document.querySelectorAll('.fade-in');
+    window.addEventListener('scroll', () => {
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
