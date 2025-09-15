@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio | Masaki</title>
+  <title>Portfolio | Masaki Fujieda</title>
   <style>
     body {
       margin: 0;
@@ -18,13 +18,13 @@
 
     /* ===== Hero Section ===== */
     .hero {
-      height: 100vh;
+      height: 100vh; /* JSで上書きされる */
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      background: linear-gradient(135deg, #accbee, #e7f0fd);
       position: relative;
     }
     .hero h1 {
@@ -54,7 +54,7 @@
 
     /* ===== Sections General ===== */
     section {
-      padding: 80px 20px;
+      padding: 80px 20px 1em; /* 下に1em余白 */
     }
     .container {
       max-width: 1000px;
@@ -91,9 +91,8 @@
 
     /* ===== Skills Section ===== */
     .skills-grid {
-      padding-top: 1em;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 20px;
       text-align: center;
     }
@@ -102,17 +101,44 @@
       border-radius: 8px;
       padding: 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative;
       transition: transform 0.3s;
     }
     .skill:hover {
       transform: translateY(-5px);
     }
+    .stars {
+      font-size: 1.2rem;
+      color: gold;
+      margin-top: 5px;
+    }
+    .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      transition: opacity 0.3s;
+      font-size: 0.8rem;
+    }
+    .skill:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
 
     /* ===== Portfolio Section ===== */
+    .portfolio-category {
+      margin-bottom: 40px;
+    }
     .portfolio-grid {
-      padding-top: 1em;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
     .portfolio-item {
@@ -124,7 +150,7 @@
     }
     .portfolio-item img {
       width: 100%;
-      height: 200px;
+      height: 180px;
       object-fit: cover;
       transition: transform 0.5s;
     }
@@ -162,7 +188,8 @@
     .timeline-item::before {
       content: "";
       position: absolute;
-      left: -32px;
+      left: -10px;
+      top: 5px;
       width: 16px;
       height: 16px;
       background: #fff;
@@ -174,31 +201,10 @@
     }
 
     /* ===== Contact Section ===== */
-    .contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 500px;
-      margin: auto;
-    }
-    .contact input, .contact textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-    .contact button {
-      padding: 12px;
-      background: #76c7c0;
-      color: #fff;
+    .contact iframe {
+      width: 100%;
+      height: 600px;
       border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
-    }
-    .contact button:hover {
-      background: #5bb1aa;
-      transform: scale(0.95);
     }
 
     /* ===== Footer ===== */
@@ -212,9 +218,9 @@
 </head>
 <body>
   <!-- Hero -->
-  <section class="hero">
-    <h1>Hello, I’m Masaki.</h1>
-    <p>Web Designer / Frontend Developer</p>
+  <section class="hero" id="hero">
+    <h1>Hello, I’m Masaki Fujieda.</h1>
+    <p>Web Designer / E-commerce operations</p>
     <div class="scroll-down">↓</div>
   </section>
 
@@ -226,7 +232,7 @@
       <p>
         東京を拠点に活動するWebデザイナーです。<br>
         明るく楽しいデザインを心がけ、<br>
-        コードとデザインの両面でサポートします。
+        コードとE-commerce運用の両面でサポートします。
       </p>
     </div>
   </section>
@@ -236,12 +242,36 @@
     <div class="container">
       <h2>Skills</h2>
       <div class="skills-grid">
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">React</div>
-        <div class="skill">Figma</div>
-        <div class="skill">WordPress</div>
+        <div class="skill">
+          HTML
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <div class="tooltip">レベル: 上級<br>使用年数: 5年</div>
+        </div>
+        <div class="skill">
+          CSS
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <div class="tooltip">レベル: 上級<br>使用年数: 5年</div>
+        </div>
+        <div class="skill">
+          JavaScript
+          <div class="stars">⭐⭐⭐⭐</div>
+          <div class="tooltip">レベル: 中上級<br>使用年数: 4年</div>
+        </div>
+        <div class="skill">
+          React
+          <div class="stars">⭐⭐⭐</div>
+          <div class="tooltip">レベル: 中級<br>使用年数: 2年</div>
+        </div>
+        <div class="skill">
+          Figma
+          <div class="stars">⭐⭐⭐⭐</div>
+          <div class="tooltip">レベル: 中上級<br>使用年数: 3年</div>
+        </div>
+        <div class="skill">
+          WordPress
+          <div class="stars">⭐⭐⭐</div>
+          <div class="tooltip">レベル: 中級<br>使用年数: 3年</div>
+        </div>
       </div>
     </div>
   </section>
@@ -250,18 +280,30 @@
   <section class="fade-in">
     <div class="container">
       <h2>Portfolio</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="work1.jpg" alt="Work 1">
-          <div class="title">Work 1</div>
+
+      <!-- Web Design -->
+      <div class="portfolio-category">
+        <h3>Web Design</h3>
+        <div class="portfolio-grid">
+          <div class="portfolio-item"><img src="web1.jpg" alt="Web1"><div class="title">Web Design 1</div></div>
+          <div class="portfolio-item"><img src="web2.jpg" alt="Web2"><div class="title">Web Design 2</div></div>
+          <div class="portfolio-item"><img src="web3.jpg" alt="Web3"><div class="title">Web Design 3</div></div>
+          <div class="portfolio-item"><img src="web4.jpg" alt="Web4"><div class="title">Web Design 4</div></div>
+          <div class="portfolio-item"><img src="web5.jpg" alt="Web5"><div class="title">Web Design 5</div></div>
+          <div class="portfolio-item"><img src="web6.jpg" alt="Web6"><div class="title">Web Design 6</div></div>
         </div>
-        <div class="portfolio-item">
-          <img src="work2.jpg" alt="Work 2">
-          <div class="title">Work 2</div>
-        </div>
-        <div class="portfolio-item">
-          <img src="work3.jpg" alt="Work 3">
-          <div class="title">Work 3</div>
+      </div>
+
+      <!-- Coding -->
+      <div class="portfolio-category">
+        <h3>Coding</h3>
+        <div class="portfolio-grid">
+          <div class="portfolio-item"><img src="code1.jpg" alt="Code1"><div class="title">Coding 1</div></div>
+          <div class="portfolio-item"><img src="code2.jpg" alt="Code2"><div class="title">Coding 2</div></div>
+          <div class="portfolio-item"><img src="code3.jpg" alt="Code3"><div class="title">Coding 3</div></div>
+          <div class="portfolio-item"><img src="code4.jpg" alt="Code4"><div class="title">Coding 4</div></div>
+          <div class="portfolio-item"><img src="code5.jpg" alt="Code5"><div class="title">Coding 5</div></div>
+          <div class="portfolio-item"><img src="code6.jpg" alt="Code6"><div class="title">Coding 6</div></div>
         </div>
       </div>
     </div>
@@ -292,21 +334,24 @@
   <section class="contact fade-in">
     <div class="container">
       <h2>Contact</h2>
-      <form>
-        <input type="text" placeholder="お名前" required>
-        <input type="email" placeholder="メールアドレス" required>
-        <textarea rows="5" placeholder="メッセージ"></textarea>
-        <button type="submit">送信</button>
-      </form>
+      <!-- Googleフォーム埋め込み例 -->
+      <iframe src="https://docs.google.com/forms/d/e/xxxxxxxxxxxxxxx/viewform?embedded=true">読み込んでいます…</iframe>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    © 2025 Masaki Portfolio
+    © 2025 Masaki Fujieda Portfolio
   </footer>
 
   <script>
+    // Hero高さを動的に調整
+    function setHeroHeight() {
+      document.getElementById('hero').style.height = window.innerHeight + 'px';
+    }
+    window.addEventListener('resize', setHeroHeight);
+    window.addEventListener('load', setHeroHeight);
+
     // スクロールで要素をふわっと表示
     const elements = document.querySelectorAll('.fade-in');
     window.addEventListener('scroll', () => {
