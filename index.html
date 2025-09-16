@@ -121,25 +121,49 @@
       font-size: 1.6rem;
       color: #ccc;
       margin-top: 10px;
-      letter-spacing: 3px;
       display: flex;
       justify-content: center;
       gap: 6px;
     }
     .star {
+      position: relative;
       display: inline-block;
-      transform-origin: center;
+      width: 1.2em;
+      height: 1.2em;
+      line-height: 1.2em;
+      font-size: 1.6rem;
+      color: #ccc;
+      text-align: center;
       transition: color 0.3s ease;
-    }
-    .star.animate {
-      animation: spinScale 0.5s ease forwards;
-      color: gold !important;
+      transform-origin: center;
     }
 
+    /* 満点の星 */
+    .star.full {
+      color: gold;
+    }
+
+    /* 半分の星 */
+    .star.half {
+      color: #ccc;
+    }
+    .star.half::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      width: 50%;
+      overflow: hidden;
+      color: gold;
+    }
+
+    /* 点灯アニメーション */
+    .star.animate {
+      animation: spinScale 0.5s ease forwards;
+    }
     @keyframes spinScale {
-      0% { transform: rotate(0deg) scale(1); color: #ccc; }
+      0% { transform: rotate(0deg) scale(1); }
       50% { transform: rotate(180deg) scale(1.5); }
-      100% { transform: rotate(360deg) scale(1); color: gold; }
+      100% { transform: rotate(360deg) scale(1); }
     }
 
     .tooltip {
@@ -381,23 +405,26 @@
 
     // スキル星アニメーション（0.5対応）
     document.querySelectorAll('.skill').forEach(skill => {
-      const stars = skill.querySelectorAll('.star');
-      const level = parseFloat(skill.getAttribute('data-level'));
+    const stars = skill.querySelectorAll('.star');
+    const level = parseFloat(skill.getAttribute('data-level'));
 
-      skill.addEventListener('mouseenter', () => {
-        stars.forEach((star, index) => {
-          setTimeout(() => {
-            if (index + 1 <= Math.floor(level)) {
-              star.classList.add('animate');
-              star.textContent = '★';
-            } else if (index + 0.5 === level) {
-              star.classList.add('animate');
-              star.textContent = '⯨'; // 半分星の代替表示
-            }
-          }, index * 100); // 100msごとに点灯
-        });
+    skill.addEventListener('mouseenter', () => {
+      stars.forEach((star, index) => {
+        setTimeout(() => {
+          const starValue = index + 1;
+          if (starValue <= Math.floor(level)) {
+            star.classList.add('full', 'animate');
+            star.textContent = '★';
+          } else if (starValue === Math.ceil(level) && level % 1 === 0.5) {
+            star.classList.add('half', 'animate');
+            star.textContent = '☆';
+          } else {
+            star.textContent = '☆';
+          }
+        }, index * 100); // 100msごとに点灯
       });
     });
+  });
   </script>
 </body>
 </html>
