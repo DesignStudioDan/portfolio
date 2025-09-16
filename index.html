@@ -96,9 +96,14 @@
     /* ===== Skills Section ===== */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
       text-align: center;
+    }
+    @media (max-width: 768px) {
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
     }
     .skill {
       background: #fff;
@@ -107,6 +112,10 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       position: relative;
       cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .skill:hover {
+      transform: translateY(-5px);
     }
     .stars {
       font-size: 1.6rem;
@@ -259,47 +268,37 @@
     <div class="container">
       <h2>Skills</h2>
       <div class="skills-grid">
-        <div class="skill" data-level="5">
-          HTML
-          <div class="stars">
-            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
-          </div>
+        <div class="skill" data-level="5" data-info="レベル: 上級 / 使用年数: 5年">HTML
+          <div class="stars"><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span></div>
           <div class="tooltip">レベル: 上級<br>使用年数: 5年</div>
         </div>
-        <div class="skill" data-level="5">
-          CSS
-          <div class="stars">
-            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
-          </div>
+        <div class="skill" data-level="5" data-info="レベル: 上級 / 使用年数: 5年">CSS
+          <div class="stars"><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span></div>
           <div class="tooltip">レベル: 上級<br>使用年数: 5年</div>
         </div>
-        <div class="skill" data-level="4">
-          JavaScript
-          <div class="stars">
-            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
-          </div>
+        <div class="skill" data-level="4.5" data-info="レベル: 中上級 / 使用年数: 4年">JavaScript
+          <div class="stars"><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span></div>
           <div class="tooltip">レベル: 中上級<br>使用年数: 4年</div>
         </div>
-        <div class="skill" data-level="3">
-          React
-          <div class="stars">
-            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
-          </div>
+        <div class="skill" data-level="3" data-info="レベル: 中級 / 使用年数: 2年">React
+          <div class="stars"><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span></div>
           <div class="tooltip">レベル: 中級<br>使用年数: 2年</div>
         </div>
-        <div class="skill" data-level="4">
-          Figma
-          <div class="stars">
-            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
-          </div>
+        <div class="skill" data-level="4" data-info="レベル: 中上級 / 使用年数: 3年">Figma
+          <div class="stars"><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span></div>
           <div class="tooltip">レベル: 中上級<br>使用年数: 3年</div>
         </div>
-        <div class="skill" data-level="3">
-          WordPress
-          <div class="stars">
-            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
-          </div>
+        <div class="skill" data-level="3.5" data-info="レベル: 中級 / 使用年数: 3年">WordPress
+          <div class="stars"><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span></div>
           <div class="tooltip">レベル: 中級<br>使用年数: 3年</div>
+        </div>
+        <div class="skill" data-level="2.5" data-info="レベル: 初級 / 使用年数: 1年">Node.js
+          <div class="stars"><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span></div>
+          <div class="tooltip">レベル: 初級<br>使用年数: 1年</div>
+        </div>
+        <div class="skill" data-level="4.5" data-info="レベル: 中上級 / 使用年数: 3年">Photoshop
+          <div class="stars"><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span></div>
+          <div class="tooltip">レベル: 中上級<br>使用年数: 3年</div>
         </div>
       </div>
     </div>
@@ -380,17 +379,20 @@
       });
     });
 
-    // スキル星アニメーション（ホバー時）
+    // スキル星アニメーション（0.5対応）
     document.querySelectorAll('.skill').forEach(skill => {
       const stars = skill.querySelectorAll('.star');
-      const level = parseInt(skill.getAttribute('data-level'));
+      const level = parseFloat(skill.getAttribute('data-level'));
 
       skill.addEventListener('mouseenter', () => {
         stars.forEach((star, index) => {
           setTimeout(() => {
-            if (index < level) {
+            if (index + 1 <= Math.floor(level)) {
               star.classList.add('animate');
               star.textContent = '★';
+            } else if (index + 0.5 === level) {
+              star.classList.add('animate');
+              star.textContent = '⯨'; // 半分星の代替表示
             }
           }, index * 100); // 100msごとに点灯
         });
