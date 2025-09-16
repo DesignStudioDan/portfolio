@@ -262,35 +262,94 @@
         <div class="skill" data-level="5">
           HTML
           <div class="stars">
-            <span class="star">☆</span>
-            <span class="star">☆</span>
-            <span class="star">☆</span>
-            <span class="star">☆</span>
-            <span class="star">☆</span>
+            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
+          </div>
+          <div class="tooltip">レベル: 上級<br>使用年数: 5年</div>
+        </div>
+        <div class="skill" data-level="5">
+          CSS
+          <div class="stars">
+            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
           </div>
           <div class="tooltip">レベル: 上級<br>使用年数: 5年</div>
         </div>
         <div class="skill" data-level="4">
           JavaScript
           <div class="stars">
-            <span class="star">☆</span>
-            <span class="star">☆</span>
-            <span class="star">☆</span>
-            <span class="star">☆</span>
-            <span class="star">☆</span>
+            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
           </div>
           <div class="tooltip">レベル: 中上級<br>使用年数: 4年</div>
         </div>
         <div class="skill" data-level="3">
           React
           <div class="stars">
-            <span class="star">☆</span>
-            <span class="star">☆</span>
-            <span class="star">☆</span>
-            <span class="star">☆</span>
-            <span class="star">☆</span>
+            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
           </div>
           <div class="tooltip">レベル: 中級<br>使用年数: 2年</div>
+        </div>
+        <div class="skill" data-level="4">
+          Figma
+          <div class="stars">
+            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
+          </div>
+          <div class="tooltip">レベル: 中上級<br>使用年数: 3年</div>
+        </div>
+        <div class="skill" data-level="3">
+          WordPress
+          <div class="stars">
+            <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
+          </div>
+          <div class="tooltip">レベル: 中級<br>使用年数: 3年</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="fade-in">
+    <div class="container">
+      <h2>Portfolio</h2>
+      <div class="portfolio-category">
+        <h3>Web Design</h3>
+        <div class="portfolio-grid">
+          <div class="portfolio-item"><img src="web1.jpg" alt="Web1"><div class="title">Web Design 1</div></div>
+          <div class="portfolio-item"><img src="web2.jpg" alt="Web2"><div class="title">Web Design 2</div></div>
+          <div class="portfolio-item"><img src="web3.jpg" alt="Web3"><div class="title">Web Design 3</div></div>
+          <div class="portfolio-item"><img src="web4.jpg" alt="Web4"><div class="title">Web Design 4</div></div>
+          <div class="portfolio-item"><img src="web5.jpg" alt="Web5"><div class="title">Web Design 5</div></div>
+          <div class="portfolio-item"><img src="web6.jpg" alt="Web6"><div class="title">Web Design 6</div></div>
+        </div>
+      </div>
+      <div class="portfolio-category">
+        <h3>Coding</h3>
+        <div class="portfolio-grid">
+          <div class="portfolio-item"><img src="code1.jpg" alt="Code1"><div class="title">Coding 1</div></div>
+          <div class="portfolio-item"><img src="code2.jpg" alt="Code2"><div class="title">Coding 2</div></div>
+          <div class="portfolio-item"><img src="code3.jpg" alt="Code3"><div class="title">Coding 3</div></div>
+          <div class="portfolio-item"><img src="code4.jpg" alt="Code4"><div class="title">Coding 4</div></div>
+          <div class="portfolio-item"><img src="code5.jpg" alt="Code5"><div class="title">Coding 5</div></div>
+          <div class="portfolio-item"><img src="code6.jpg" alt="Code6"><div class="title">Coding 6</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="fade-in">
+    <div class="container">
+      <h2>Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>2020</h3>
+          <p>Web制作を開始</p>
+        </div>
+        <div class="timeline-item">
+          <h3>2023</h3>
+          <p>フリーランスとして活動開始</p>
+        </div>
+        <div class="timeline-item">
+          <h3>2025</h3>
+          <p>現在、Webデザイナーとして転職活動中</p>
         </div>
       </div>
     </div>
@@ -321,7 +380,7 @@
       });
     });
 
-    // スキル星アニメーション
+    // スキル星アニメーション（ホバー時）
     document.querySelectorAll('.skill').forEach(skill => {
       const stars = skill.querySelectorAll('.star');
       const level = parseInt(skill.getAttribute('data-level'));
@@ -331,16 +390,9 @@
           setTimeout(() => {
             if (index < level) {
               star.classList.add('animate');
+              star.textContent = '★';
             }
-          }, index * 200); // 200ms間隔で順に点灯
-        });
-      });
-
-      // ホバー解除でリセット
-      skill.addEventListener('mouseleave', () => {
-        stars.forEach(star => {
-          star.classList.remove('animate');
-          star.textContent = '☆';
+          }, index * 100); // 100msごとに点灯
         });
       });
     });
