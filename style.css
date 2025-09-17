@@ -38,10 +38,17 @@ h2 {
     display: inline; /* PC表示の場合表示 */
   }
 }
+/* スマートフォン、またはタッチデバイスではホバーを無効化する */
+@media (pointer: coarse) {
+  /* touchデバイスを検出 */
+  .your-element:hover {
+    pointer-events: none; /* マウスイベントの発生を無効にする */
+  }
+}
 
 /* ===== Hero Section ===== */
 .hero {
-  height: 100vh;
+  height: 100dvh;
   padding: 0px 20px;
   display: flex;
   flex-direction: column;
@@ -155,6 +162,7 @@ section {
 .skill:hover {
   transform: translateY(-5px);
 }
+
 .stars {
   font-size: 1.6rem;
   color: #ccc;
