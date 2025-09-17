@@ -31,7 +31,8 @@ document.querySelectorAll(".skill").forEach((skill) => {
     });
   });
 
-  skill.addEventListener("touchstart", () => {
+  skill.addEventListener("touchstart", function () {
+    // タップされたときの処理
     stars.forEach((star, index) => {
       setTimeout(() => {
         const starValue = index + 1;
@@ -46,5 +47,7 @@ document.querySelectorAll(".skill").forEach((skill) => {
         }
       }, index * 100);
     });
+    // ここでCSSを適用したり、要素のスタイルを変更したりします
+    // this.style.backgroundColor = "yellow";
   });
 });
