@@ -48,7 +48,7 @@ h2 {
 
 /* ===== Hero Section ===== */
 .hero {
-  height: 100dvh;
+  height: 100svh;
   padding: 0px 20px;
   display: flex;
   flex-direction: column;
