@@ -261,6 +261,11 @@ section {
 .promotion-item:hover {
   height: 360px;
 }
+@media (hover: none) {
+  .promotion-item:active {
+    height: 360px;
+  }
+}
 .promotion-item h3 {
   padding-bottom: 0;
   position: absolute;
@@ -274,7 +279,6 @@ section {
   height: 100%;
   left: 0;
   right: 0;
-  /* background: rgba(0, 0, 0, 0.7); */
   background: #568ece;
   color: #fff;
   padding: 10px;
@@ -283,6 +287,11 @@ section {
 }
 .promotion-item:hover .text {
   opacity: 1;
+}
+@media (hover: none) {
+  .promotion-item:active .text {
+    opacity: 1;
+  }
 }
 
 /* ===== Portfolio Section ===== */
