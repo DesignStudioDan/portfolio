@@ -42,7 +42,7 @@ document.querySelectorAll(".skill").forEach((skill) => {
 // ユーザーエージェントや画面サイズでPCか判定
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-const element = document.querySelector(".skill");
+const element = document.querySelector(".star");
 
 if (isMobile) {
   // スマホの場合、タップでクラスを追加・削除
