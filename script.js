@@ -32,9 +32,9 @@ document.querySelectorAll(".skill").forEach((skill) => {
   });
 });
 
-// document.querySelectorAll(".your-element").forEach((element) => {
-//   element.addEventListener("click", () => {
-//     // ホバーで行っていた処理を実行
-//     element.classList.toggle("active"); // 例：アクティブクラスの切り替え
-//   });
-// });
+document.querySelectorAll(".your-element").forEach((element) => {
+  element.addEventListener("click", () => {
+    // ホバーで行っていた処理を実行
+    element.classList.toggle("active"); // 例：アクティブクラスの切り替え
+  });
+});
