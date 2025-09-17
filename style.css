@@ -256,7 +256,7 @@ section {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   background: linear-gradient(135deg, #accbee, #e7f0fd);
-  transition: opacity 0.3s;
+  transition: opacity 0.5s;
 }
 .promotion-item:hover {
   height: 360px;
@@ -278,7 +278,7 @@ section {
   color: #fff;
   padding: 10px;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.5s;
 }
 .promotion-item:hover .text {
   opacity: 1;
