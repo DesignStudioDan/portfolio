@@ -18,7 +18,7 @@ document.querySelectorAll(".skill").forEach((skill) => {
   window.addEventListener("scroll", () => {
     elements.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 400) {
+      if (rect.top < window.innerHeight - 300) {
         stars.forEach((star, index) => {
           setTimeout(() => {
             const starValue = index + 1;
