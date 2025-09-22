@@ -19,6 +19,9 @@ h3 {
   padding-bottom: 0.8em;
 }
 h2 {
+  font-size: 1.5em;
+}
+h3 {
   font-size: 1.3em;
 }
 
@@ -36,13 +39,6 @@ h2 {
   }
   .pc-only {
     display: inline; /* PC表示の場合表示 */
-  }
-}
-/* スマートフォン、またはタッチデバイスではホバーを無効化する */
-@media (pointer: coarse) {
-  /* touchデバイスを検出 */
-  .your-element:hover {
-    pointer-events: none; /* マウスイベントの発生を無効にする */
   }
 }
 
@@ -159,8 +155,15 @@ section {
   cursor: pointer;
   transition: transform 0.3s;
 }
-.skill:hover {
-  transform: translateY(-5px);
+@media (hover: hover) {
+  .skill:hover {
+    transform: translateY(-5px);
+  }
+}
+@media (hover: none) {
+  .skill.active {
+    transform: translateY(-5px);
+  }
 }
 
 .stars {
@@ -233,9 +236,17 @@ section {
   transition: opacity 0.3s;
   font-size: 0.8rem;
 }
-.skill:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
+@media (hover: hover) {
+  .skill:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@media (hover: none) {
+  .skill.active .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 /* ===== Self Promotion Section ===== */
@@ -249,39 +260,41 @@ section {
 }
 .promotion-item {
   width: 100%;
-  height: 100px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  background: linear-gradient(135deg, #accbee, #e7f0fd);
-  transition: opacity 0.5s;
-}
-.promotion-item:hover {
   height: 360px;
+  perspective: 1000px; /* 3D効果 */
+  cursor: pointer;
+}
+.promotion-item-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.promotion-item.is-flipped .promotion-item-inner {
+  transform: rotateY(180deg);
 }
 .promotion-item h3 {
   padding-bottom: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.2em;
+  text-align: center;
 }
+.promotion-item .title,
 .promotion-item .text {
   position: absolute;
+  width: 100%;
   height: 100%;
-  left: 0;
-  right: 0;
-  background: #568ece;
-  color: #fff;
-  padding: 10px;
-  opacity: 0;
-  transition: opacity 0.5s;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #accbee, #e7f0fd);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 14px;
+  box-sizing: border-box;
 }
-.promotion-item:hover .text {
-  opacity: 1;
+.promotion-item .text {
+  transform: rotateY(180deg);
 }
 
 /* ===== Portfolio Section ===== */
@@ -290,7 +303,7 @@ section {
 }
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   gap: 20px;
 }
 .portfolio-item {
@@ -302,12 +315,21 @@ section {
 }
 .portfolio-item img {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
+  filter: saturate(0);
+  transform: scale(1.1);
   transition: transform 0.5s;
 }
+@media (hover: none) {
+  .portfolio-item img {
+    filter: saturate(1);
+    transform: scale(1);
+  }
+}
 .portfolio-item:hover img {
-  transform: scale(1.1);
+  filter: saturate(1);
+  transform: scale(1);
 }
 .portfolio-item .title {
   position: absolute;
@@ -320,6 +342,11 @@ section {
   text-align: center;
   opacity: 0;
   transition: opacity 0.3s;
+}
+@media (hover: none) {
+  .portfolio-item .title {
+    opacity: 1;
+  }
 }
 .portfolio-item:hover .title {
   opacity: 1;
@@ -356,7 +383,7 @@ section {
 /* ===== Contact Section ===== */
 .contact iframe {
   width: 100%;
-  height: 600px;
+  height: 1000px;
   border: none;
 }
 
